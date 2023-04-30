@@ -5,9 +5,9 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 /**
- * TODO
- * @author TODO
- * @since  TODO
+ * Vehicle Parent Class
+ * @author Aneesh Pamula
+ * @since  4/29/2023
  */
 
 public abstract class Vehicle {
@@ -18,9 +18,13 @@ public abstract class Vehicle {
     protected final ArrayList<String> passengerNames;
     protected int vehicleID;
 
-    public Vehicle(String VehicleName) {
+    public Vehicle(String VehicleName) throws IllegalArgumentException {
         this.date = LocalDate.now();
-        /*TODO*/
+        if (VehicleName == null)
+            throw new IllegalArgumentException();
+        vehicle = VehicleName;
+        currentPassengers = new ArrayList<>();
+        passengerNames = new ArrayList<>();
     }
 
     public LocalDate getDate(){
@@ -28,18 +32,15 @@ public abstract class Vehicle {
     }
 
     public String getVehicleName(){
-        /*TODO*/
-        return null;
+        return this.vehicle;
     }
 
     public ArrayList<Passenger> getCurrentPassengers(){
-        /*TODO*/
-        return null;
+        return this.currentPassengers;
     }
 
     public Integer getVehicleID() {
-        /*TODO*/
-        return null;
+        return this.vehicleID;
     }
 
     public abstract boolean addPassengerToVehicle(Passenger p)

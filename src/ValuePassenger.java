@@ -4,9 +4,9 @@
  */
 
 /**
- * TODO
- * @author TODO
- * @since  TODO
+ * ValuePassenger class
+ * @author Aneesh Pamula
+ * @since  4/29/2023
  */
 public class ValuePassenger extends Passenger{
 
@@ -14,15 +14,16 @@ public class ValuePassenger extends Passenger{
     private String customTitle;
 
     public ValuePassenger(String username, String bio){
-        /*TODO*/
+        super(username, bio);
+        customTitle = "Value Passenger";
+        passengerID = 1;
     }
 
     public String displayName() {
-        /*TODO*/
-        return null;
+        return "<" + this.customTitle + "> " + username;
     }
 
     public void setCustomTitle(String newTitle) {
-        /*TODO*/
+        this.customTitle = newTitle;
     }
 }

@@ -1,7 +1,7 @@
 /**
- * TODO
- * @author TODO
- * @since  TODO
+ * Premium Vehicle Class
+ * @author Aneesh Pamula
+ * @since  4/29/2023
  */
 public class PremiumVehicle extends Vehicle{
 
@@ -15,18 +15,40 @@ public class PremiumVehicle extends Vehicle{
 
     public PremiumVehicle(String VehicleName)
             throws OperationDeniedException {
-        /*TODO*/
+        super(VehicleName);
+        boolean premium = false;
+        for(String s : PREMIUM_VEHICLE_BRAND){
+            if(s.toLowerCase().equals(VehicleName.toLowerCase())){
+                premium = true;
+                break;
+            }
+        }
+        if(!premium)
+            throw new OperationDeniedException(INVALID_INPUT);
+        this.vehicleID = 1;
     }
 
     public boolean addPassengerToVehicle(Passenger p)
             throws OperationDeniedException {
-        /*TODO*/
-        return false;
+        if (this.currentPassengers.contains(p))
+            return false;
+        if(p.getClass() != ValuePassenger.class)
+            throw new OperationDeniedException(DENIED_PASSENGER_GROUP);
+        this.currentPassengers.add(p);
+        return true;
+
     }
 
     // bmw01 (Premium) [2022-10-08]: [<Value Passenger> Yunyi]
     public String getVehicleInfo() {
-        /*TODO*/
-        return null;
+        String output = this.getVehicleName() + " (Premium) [" + getDate() + "]: [";
+        for(int i = 0; i < this.passengerNames.size(); i++){
+            if(i < passengerNames.size() -1)
+                output += passengerNames.get(i) + " ";
+            else
+                output += passengerNames.get(i);
+        }
+        output += "]";
+        return output;
     }
 }

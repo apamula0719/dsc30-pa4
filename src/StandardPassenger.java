@@ -4,18 +4,18 @@
  */
 
 /**
- * TODO
- * @author TODO
- * @since  TODO
+ * StandardPassenger Class
+ * @author Aneesh Pamula
+ * @since  4/29/2023
  */
 public class StandardPassenger extends Passenger{
 
     public StandardPassenger(String username, String bio){
-        /*TODO*/
+        super(username, bio);
+        this.passengerID = 0;
     }
 
     public String displayName() {
-        /*TODO*/
-        return null;
+        return this.username;
     }
 }
