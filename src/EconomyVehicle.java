@@ -23,7 +23,7 @@ public class EconomyVehicle extends Vehicle{
         String output = this.getVehicleName() + " [" + getDate() + "]: [";
         for(int i = 0; i < this.passengerNames.size(); i++){
             if(i < passengerNames.size() -1)
-                output += passengerNames.get(i) + " ";
+                output += passengerNames.get(i) + ", ";
             else
                 output += passengerNames.get(i);
         }

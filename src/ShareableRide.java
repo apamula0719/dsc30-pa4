@@ -13,43 +13,63 @@ public class ShareableRide implements RideScheduler{
     private ArrayList<String> assignments;
 
     public ShareableRide(){
-        /*TODO*/
+        vehicles = new ArrayList<Vehicle>();
+        passengers = new ArrayList<Passenger>();
+        assignments = new ArrayList<String>();
     }
 
 
     public ArrayList<Vehicle> getVehicles() {
-        /*TODO*/
-        return null;
+        return vehicles;
     }
 
 
     public ArrayList<Passenger> getPassengers() {
-        /*TODO*/
-        return null;
+        return passengers;
     }
 
 
     public boolean addPassenger(Passenger p) throws OperationDeniedException {
-        /*TODO*/
-        return false;
+        if(p.getClass() != ValuePassenger.class)
+            throw new OperationDeniedException(DENIED_PASSENGER_GROUP);
+        if(this.passengers.contains(p))
+            return false;
+        this.passengers.add(p);
+        return true;
     }
 
 
 
     public boolean addVehicle(Vehicle v) {
-        /*TODO*/
-        return false;
+        if(this.vehicles.contains(v))
+            return false;
+        this.vehicles.add(v);
+        return true;
     }
 
 
 
     public void assignPassengerToVehicle() throws OperationDeniedException {
-        /*TODO*/
+        if(this.vehicles.size()*CARPOOL_LIMIT < this.passengers.size())
+            throw new OperationDeniedException(INVALID_ACTION);
+        //Add passengers to vehicles
+        int j = 0;//Counter for adding passengers
+        for(Vehicle v : vehicles){
+            if(j == passengers.size())
+                break;
+            while(v.getCurrentPassengers().size() < 5){
+                if(j == passengers.size())
+                    break;
+                v.addPassengerToVehicle(passengers.get(j));
+                j++;
+            }
+        }
+        for(Vehicle v : vehicles)
+            assignments.add(v.getVehicleInfo());
     }
 
 
     public ArrayList<String> getRecords() {
-        /*TODO*/
-        return null;
+        return assignments;
     }
 }

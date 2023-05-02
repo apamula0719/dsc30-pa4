@@ -35,6 +35,7 @@ public class PremiumVehicle extends Vehicle{
         if(p.getClass() != ValuePassenger.class)
             throw new OperationDeniedException(DENIED_PASSENGER_GROUP);
         this.currentPassengers.add(p);
+        this.passengerNames.add(p.displayName());
         return true;
 
     }
@@ -44,7 +45,7 @@ public class PremiumVehicle extends Vehicle{
         String output = this.getVehicleName() + " (Premium) [" + getDate() + "]: [";
         for(int i = 0; i < this.passengerNames.size(); i++){
             if(i < passengerNames.size() -1)
-                output += passengerNames.get(i) + " ";
+                output += passengerNames.get(i) + ", ";
             else
                 output += passengerNames.get(i);
         }
